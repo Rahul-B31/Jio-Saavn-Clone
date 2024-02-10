@@ -22,6 +22,20 @@ input[type="range"]::-webkit-slider-thumb{
      border-radius:30px ;
      background-color: #46c7b6ff ;
 }
+
+.scroll-hide{
+    scroll-behavior: smooth;
+    transition: 0.5 cubic-bezier(0.645,0.045,0.355,1);
+    scroll-snap-type:x mandatory;
+    scroll-padding: 0 20px;
+    animation-delay: 1s;
+    
+
+}
+.scroll-hide::-webkit-scrollbar{
+    width: 0px;
+    background: transparent
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
