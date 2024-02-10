@@ -10,7 +10,7 @@ const NavBar = () => {
              <div className="flex flex-col lg:flex-row justify-between items-center mx-auto lg:mx-0">
                 <div className='flex items-center  justify-between gap-2 mr-4'>
                     <img src="/savan-logo.png" alt="Savan logo" width={37} />
-                    <Link href="/" className='font-extrabold text-lg'>Jio Saavn</Link>
+                    <Link to="/" className='font-extrabold text-lg'>Jio Saavn</Link>
                 </div>
 
                 <ul className="flex text-[24px] lg:text-[15px] gap-5 text-gray-600 font-semibold h-full">
