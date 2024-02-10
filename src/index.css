@@ -6,7 +6,8 @@
 body{
 
     font-family: 'Roboto', sans-serif;
-    background-color: #f5f5f5ff 
+    /* background-color: #f5f5f5ff  */
+    background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
 }
 input[type="range"]{
 

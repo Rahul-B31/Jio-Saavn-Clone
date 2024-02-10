@@ -42,7 +42,7 @@ function AlbumDetails(){
                               />
                               <div className="w-[250px] text-gray-600">
                                  <h1 className="font-semibold text-xl">{albumData.name}</h1>
-                                 <p>by {albumData.primaryArtists} . {albumData.songCount}</p>
+                                 <p>{"By "+albumData.primaryArtists} . {albumData.songCount}</p>
                         </div>
                       </div>
                    <div className="">

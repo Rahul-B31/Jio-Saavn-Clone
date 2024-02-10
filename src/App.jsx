@@ -39,18 +39,46 @@ function App() {
         audio:newAudio,
         primaryArtists
        })
-       setIsPlaying(true)
-       console.log("id",id)
-       console.log("name",name)
+       setIsPlaying(true);
   
        await newAudio.play();
-
      }
+  }
+
+  const nextSong = ()=>{
+    if(currentSong){
+       const index = songs.findIndex((song)=> song.id === currentSong.id)
+       if(index === songs.length - 1 ){
+          const {downloadUrl,name,duration,image,id,primaryArtists} = songs[0];
+          PlayMusic(downloadUrl,name,duration,image,id,primaryArtists)
+       }
+       else{
+          const {downloadUrl,name,duration,image,id,primaryArtists} = songs[index + 1]
+          PlayMusic(downloadUrl,name,duration,image,id,primaryArtists);
+       }
+         
+    }
+
+  }
+
+  const prevSong = ()=>{
+    if(currentSong){
+       const index = songs.findIndex((song)=> song.id === currentSong.id)
+       if(index === 0 ){
+          const {downloadUrl,name,duration,image,id,primaryArtists} = songs[songs.length - 1];
+          PlayMusic(downloadUrl,name,duration,image,id,primaryArtists)
+       }
+       else{
+          const {downloadUrl,name,duration,image,id,primaryArtists} = songs[index - 1]
+          PlayMusic(downloadUrl,name,duration,image,id,primaryArtists);
+       }
+         
+    }
 
   }
 
   return (
-    <MusicContext.Provider value={{songs,setSongs,PlayMusic,isPlaying,setIsPlaying,currentSong}}>
+    <MusicContext.Provider value={{songs,setSongs,PlayMusic,isPlaying,setIsPlaying,currentSong,nextSong,prevSong}}>
         <BrowserRouter>
 
             <Routes>

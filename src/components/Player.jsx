@@ -5,11 +5,13 @@ import {FaPlay,FaPause} from 'react-icons/fa'
 import {HiSpeakerWave} from 'react-icons/hi2'
 import {LuHardDriveDownload} from 'react-icons/lu';
 import VolumeController from './VolumeController'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import MusicContext from '../context/MusicContext'
 
 const Player = () => {
 
    const [isVolumeVisible,setVolumeVisible] = useState(false); 
+   const {PlayMusic,isPlaying,currentSong,nextSong,prevSong} = useContext(MusicContext);
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-[#f5f5f5ff] flex flex-col" >
        <input type="range" 
@@ -25,23 +27,45 @@ const Player = () => {
 
                 {/* album image  */}
                 <div className="flex justify-start items-center gap-3 lg:w-[30vw]">
-                    <img src="https://c.saavncdn.com/274/Rockstar-2011-500x500.jpg" alt="" 
+                    <img src={currentSong?.image} alt="" 
                     width={55}
                     className="rounded-lg"
                     />
 
                     <div className="hidden lg:block">
-                        <span>Lorem, ipsum.</span>
-                        <p className="text-xs text-gray-500">Lorem, ipsum dolor.</p>
+                        <span>{currentSong?.name}</span>
+                        <p className="text-xs text-gray-500">{currentSong?.primaryArtists}</p>
                     </div>
 
                 </div>
 
                 <div className="flex text-2xl lg:text-3xl gap-4 lg:gap-6 lg:w-[40vw] justify-center">
                     <BiRepeat className='text-gray-400 cursor-pointer'/>
-                    <IoMdSkipBackward className='text-gray-700 hover:text-gray-500 cursor-pointer'/>
-                    <FaPlay className='text-gray-700 hover:text-gray-500 cursor-pointer'/>
-                    <IoMdSkipForward className='text-gray-700 hover:text-gray-500 cursor-pointer'/>
+
+
+                    {/* {Prev song} */}
+                    <IoMdSkipBackward className='text-gray-700 hover:text-gray-500 cursor-pointer' onClick={prevSong}/>
+
+                    {
+                        isPlaying?(
+                            <FaPause className='text-gray-700 hover:text-gray-500 cursor-pointer'
+                            onClick={()=>{
+                                PlayMusic(currentSong.audio,currentSong.name,currentSong.duration,currentSong.image,currentSong.id)
+                            }}/>
+                        )
+                        :(
+                            <FaPlay className='text-gray-700 hover:text-gray-500 cursor-pointer'
+                            onClick={()=>{
+                                PlayMusic(currentSong.audio,currentSong.name,currentSong.duration,currentSong.image,currentSong.id)
+                            }}/>
+                        )
+                        
+                    }
+
+
+                    <IoMdSkipForward className='text-gray-700 hover:text-gray-500 cursor-pointer' onClick={nextSong}/>
+
+
                     <PiShuffleBold className='text-gray-500 cursor-pointer '/>
 
                 </div>
