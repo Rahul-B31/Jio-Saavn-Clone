@@ -33,21 +33,21 @@ const MainComponet = () => {
          );
   return (
          <section className='my-20'>
-                <h2 className='text-xl px-5 py-3 font-semibold text-gray-600 w-full lg:w-[78vw] mx-auto'>
+                <h2 className='text-xl px-5 py-3 font-semibold text-gray-600 w-full lg:w-[78vw] mx-auto dark:text-gray-200'>
                     Trending Now
                 </h2>
                 <Slider data={trendingAlbums}/>
-                <h2 className='text-xl px-5 py-3 font-semibold text-gray-600 w-full lg:w-[78vw] mx-auto'>
+                <h2 className='text-xl px-5 py-3 font-semibold text-gray-600 w-full lg:w-[78vw] mx-auto dark:text-gray-200'>
                    Top Albums
                 </h2>
                 <Slider data={album}/>
-                <h2 className='text-xl px-5 py-3 font-semibold text-gray-600 w-full lg:w-[78vw] mx-auto'>
+                <h2 className='text-xl px-5 py-3 font-semibold text-gray-600 w-full lg:w-[78vw] mx-auto dark:text-gray-200'>
                    Top Playlist
                 </h2>
                 <Slider data={playList}/>
 
 
-                <h2 className='text-xl px-5 py-3 font-semibold text-gray-600 w-full lg:w-[78vw] mx-auto'>
+                <h2 className='text-xl px-5 py-3 font-semibold text-gray-600 w-full lg:w-[78vw] mx-auto dark:text-gray-200'>
                    Top Charts
                 </h2>
                 <Slider data={charts}/>

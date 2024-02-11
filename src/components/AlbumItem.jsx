@@ -8,8 +8,8 @@ const AlbumItem = ({name,artists,id,image}) => {
          <img src={image[2].link} alt=""  className="rounded-lg" />
 
           <div className="text-[13px] w-full flex flex-col justify-center items-center">
-             <span className="text-gray-600 font-semibold overflow-x-clip">{name}</span>
-             <p className="text-gray-500 font-thin">{artists.map((artist)=>artist.name).join(',').substring(0,20)+"..."}</p>
+             <span className="text-gray-600 dark:text-gray-300 font-semibold overflow-x-clip">{name}</span>
+             <p className="text-gray-500 dark:text-gray-400 font-thin">{artists.map((artist)=>artist.name).join(',').substring(0,20)+"..."}</p>
 
           </div>
      </Link>

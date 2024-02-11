@@ -42,12 +42,12 @@ function AlbumDetails(){
                               width={250} 
                               className="mx-auto mb-4"
                               />
-                              <div className="w-[250px] text-gray-600">
-                                 <h1 className="font-semibold text-xl">{albumData.name}</h1>
-                                 <p>{"By "+albumData.primaryArtists} . {albumData.songCount}</p>
+                              <div className="w-[250px] text-gray-600 ">
+                                 <h1 className="font-semibold text-xl dark:text-gray-100">{albumData.name}</h1>
+                                 <p className="dark:text-gray-400">{"By "+albumData.primaryArtists} . {albumData.songCount}</p>
                         </div>
                       </div>
-                   <div className="">
+                   <div className="flex flex-col gap-1">
                        {
                          albumData.songs?.map((song)=>(<SongList key={song.id} {...song}/>))
                        }

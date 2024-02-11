@@ -73,7 +73,7 @@ const Player = () => {
 
     
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-[#f5f5f5ff] flex flex-col" >
+    <div className="fixed bottom-0 left-0 right-0 bg-[#f5f5f5ff] dark:bg-darkblue  flex flex-col" >
        <input type="range" 
              name="progress"
             id="progress"
@@ -95,28 +95,28 @@ const Player = () => {
                     />
 
                     <div className="hidden lg:block">
-                        <span>{currentSong?.name}</span>
-                        <p className="text-xs text-gray-500">{currentSong?.primaryArtists}</p>
+                        <span className='dark:text-gray-200 '>{currentSong?.name}</span>
+                        <p className="text-xs text-gray-500 dark:text-gray-300">{currentSong?.primaryArtists}</p>
                     </div>
 
                 </div>
 
                 <div className="flex text-2xl lg:text-3xl gap-4 lg:gap-6 lg:w-[40vw] justify-center">
-                    <BiRepeat className='text-gray-400 cursor-pointer'/>
+                    <BiRepeat className='text-gray-400 cursor-pointer '/>
 
 
                     {/* {Prev song} */}
-                    <IoMdSkipBackward className='text-gray-700 hover:text-gray-500 cursor-pointer' onClick={prevSong}/>
+                    <IoMdSkipBackward className='text-gray-700 hover:text-gray-500 dark:text-gray-100 cursor-pointer' onClick={prevSong}/>
 
                     {
                         isPlaying?(
-                            <FaPause className='text-gray-700 hover:text-gray-500 cursor-pointer'
+                            <FaPause className='text-gray-700 hover:text-gray-500 cursor-pointer dark:text-gray-100'
                             onClick={()=>{
                                 PlayMusic(currentSong.audio,currentSong.name,currentSong.duration,currentSong.image,currentSong.id)
                             }}/>
                         )
                         :(
-                            <FaPlay className='text-gray-700 hover:text-gray-500 cursor-pointer'
+                            <FaPlay className='text-gray-700 hover:text-gray-500 cursor-pointer dark:text-gray-100'
                             onClick={()=>{
                                 PlayMusic(currentSong.audio,currentSong.name,currentSong.duration,currentSong.image,currentSong.id)
                             }}/>
@@ -125,7 +125,7 @@ const Player = () => {
                     }
 
 
-                    <IoMdSkipForward className='text-gray-700 hover:text-gray-500 cursor-pointer' onClick={nextSong}/>
+                    <IoMdSkipForward className='text-gray-700 hover:text-gray-500 cursor-pointer dark:text-gray-100' onClick={nextSong}/>
 
 
                     <PiShuffleBold className='text-gray-500 cursor-pointer '/>
@@ -134,8 +134,8 @@ const Player = () => {
 
 
                 <div className="flex lg:w-[30vw] justify-end items-center lg:text-xl gap-3" >
-                    <LuHardDriveDownload className='text-gray-700 lg:text-3xl hover:text-gray-500 cursor-pointer lg:mr-2' onClick={()=>handleDownloadSongs(currentSong.audio.src)}/>
-                    <HiSpeakerWave className='text-gray-700 lg:text-3xl hover:text-gray-500 cursor-pointer lg:mr-2 ' 
+                    <LuHardDriveDownload className='text-gray-700 lg:text-3xl hover:text-gray-500 cursor-pointer lg:mr-2 dark:text-gray-100' onClick={()=>handleDownloadSongs(currentSong.audio.src)}/>
+                    <HiSpeakerWave className='text-gray-700 lg:text-3xl hover:text-gray-500 cursor-pointer lg:mr-2 dark:text-gray-100 ' 
                           onClick={()=>setVolumeVisible(!isVolumeVisible)}
                           
                    />

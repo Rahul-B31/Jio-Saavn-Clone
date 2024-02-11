@@ -37,8 +37,8 @@ function PlayListDetails(){
    return (
         <>
             <NavBar/>
-            <SearchSection/>
-                  <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-24 h-screen my-48 lg:my-0 mx-2 lg:mx-auto relative">
+            <SearchSection/> 
+                  <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-24 h-screen my-48 lg:my-0 mx-2 lg:mx-auto z-10">
                         <div className="">
                            <img src={image}
                               alt={playListdata.title} 

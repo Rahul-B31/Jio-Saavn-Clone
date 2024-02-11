@@ -17,7 +17,7 @@ const Slider = ({data}) => {
    return (
      <div className="flex justify-center items-center gap-2">
 
-         <MdOutlineKeyboardArrowLeft className='text-3xl text-gray-600 hover:scale-125 transition-all duration-500 ease-in-out cursor-pointer hidden lg:block' onClick={scrollLeft}/>
+         <MdOutlineKeyboardArrowLeft className='text-3xl text-gray-600 dark:text-gray-300 hover:scale-125 transition-all duration-500 ease-in-out cursor-pointer hidden lg:block' onClick={scrollLeft}/>
            
            <div className="grid grid-rows-2 grid-flow-col-dense justify-between items-start gap-4 overflow-x-scroll w-full lg:w-[78vw] px-5 scroll-hide" ref={scrollRef}>
                   {
@@ -34,7 +34,7 @@ const Slider = ({data}) => {
                   }
            </div>
 
-         <MdOutlineKeyboardArrowRight className='text-3xl text-gray-600 hover:scale-125 transition-all duration-500 ease-in-out cursor-pointer hidden lg:block' onClick={scrollRight} />  
+         <MdOutlineKeyboardArrowRight className='text-3xl dark:text-gray-300  text-gray-600 hover:scale-125 transition-all duration-500 ease-in-out cursor-pointer hidden lg:block' onClick={scrollRight} />  
 
      </div>
   )

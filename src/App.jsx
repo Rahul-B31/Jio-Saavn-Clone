@@ -80,18 +80,22 @@ function App() {
   }
 
   return (
-    <MusicContext.Provider value={{songs,setSongs,PlayMusic,isPlaying,setIsPlaying,currentSong,nextSong,prevSong,searchedSong,setSearchSong}}>
-        <BrowserRouter>
+   
 
-            <Routes>
-                <Route path='/' element={<Home/>}/>
-                <Route path='/Albums/:id' element={<AlbumDetails/>}/>
-                <Route path='/PlayList/:id' element={<PlayListDetails/>}/>
-            </Routes>
+      <MusicContext.Provider value={{songs,setSongs,PlayMusic,isPlaying,setIsPlaying,currentSong,nextSong,prevSong,searchedSong,setSearchSong}}>
+          <BrowserRouter>
+  
+              <Routes>
+                  <Route path='/' element={<Home />}/>
+                  <Route path='/Albums/:id' element={<AlbumDetails/>}/>
+                  <Route path='/PlayList/:id' element={<PlayListDetails/>}/>
+              </Routes>
+  
+              </BrowserRouter> 
+      </MusicContext.Provider>
+        
 
-            </BrowserRouter> 
-    </MusicContext.Provider>
-      
+  
   )
 }
 
