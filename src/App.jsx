@@ -12,7 +12,8 @@ function App() {
   const [songs,setSongs] = useState([]);
   const [isPlaying,setIsPlaying] = useState(false);
   const [currentSong,setCurrentSong] = useState(null);
-
+  const [searchedSong,setSearchSong] = useState([]);
+ 
   const PlayMusic = async (music,name,duration,image,id,primaryArtists)=>{
 
      if(currentSong && currentSong.id === id){
@@ -78,7 +79,7 @@ function App() {
   }
 
   return (
-    <MusicContext.Provider value={{songs,setSongs,PlayMusic,isPlaying,setIsPlaying,currentSong,nextSong,prevSong}}>
+    <MusicContext.Provider value={{songs,setSongs,PlayMusic,isPlaying,setIsPlaying,currentSong,nextSong,prevSong,searchedSong,setSearchSong}}>
         <BrowserRouter>
 
             <Routes>

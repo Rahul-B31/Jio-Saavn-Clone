@@ -5,13 +5,51 @@ import {FaPlay,FaPause} from 'react-icons/fa'
 import {HiSpeakerWave} from 'react-icons/hi2'
 import {LuHardDriveDownload} from 'react-icons/lu';
 import VolumeController from './VolumeController'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import MusicContext from '../context/MusicContext'
 
 const Player = () => {
 
    const [isVolumeVisible,setVolumeVisible] = useState(false); 
    const {PlayMusic,isPlaying,currentSong,nextSong,prevSong} = useContext(MusicContext);
+
+    const InputRef = useRef(null);
+     useEffect(()=>{
+      
+         if(currentSong){
+
+           const audioElement = currentSong.audio;
+
+            function handleTimeUpdate(){
+                const duration = Number(currentSong.duration);
+                const currentTime = audioElement.currentTime;
+                const newTime = (currentTime / duration) * 100;
+
+                InputRef.current.value= newTime;
+            }
+            function handleSongEnd(){
+                nextSong();
+            }
+
+            audioElement.addEventListener("timeupdate",handleTimeUpdate)
+            audioElement.addEventListener("ended",handleSongEnd)
+
+            return ()=>{
+                audioElement.removeEventListener("timeupdate",handleTimeUpdate)
+                audioElement.removeEventListener("ended",handleSongEnd)
+            }
+         }2
+         
+     },[currentSong])
+
+     function handleProgess(event){
+              const newPercentage = parseFloat(event.target.value);
+              const newTime = (newPercentage / 100) * Number(currentSong.duration);
+              currentSong.audio.currentTime = newTime;
+
+     }
+
+    
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-[#f5f5f5ff] flex flex-col" >
        <input type="range" 
@@ -22,6 +60,8 @@ const Player = () => {
             step="0.1" 
             value={0}
             className="w-full h-2 text-green-400"
+            ref={InputRef}
+            onChange={handleProgess}
             />
         <div className="flex justify-between items-center mb-3 px-3">
 
