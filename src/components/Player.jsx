@@ -7,6 +7,7 @@ import {LuHardDriveDownload} from 'react-icons/lu';
 import VolumeController from './VolumeController'
 import { useContext, useEffect, useRef, useState } from 'react'
 import MusicContext from '../context/MusicContext'
+import axios from 'axios'
 
 const Player = () => {
 
@@ -42,11 +43,32 @@ const Player = () => {
          
      },[currentSong])
 
+
+    async function handleDownloadSongs(url){
+         try {
+
+
+            const response = await fetch(url)
+            const blob  = await response.blob();
+
+            const link  = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download  = `${currentSong.name}.mp3`;
+
+             document.body.appendChild(link);
+             link.click();
+             document.body.removeChild(link)
+            
+         } catch (error) {
+             console.log("Error",error)
+         }
+       
+     }
+
      function handleProgess(event){
               const newPercentage = parseFloat(event.target.value);
               const newTime = (newPercentage / 100) * Number(currentSong.duration);
               currentSong.audio.currentTime = newTime;
-
      }
 
     
@@ -111,11 +133,11 @@ const Player = () => {
                 </div>
 
 
-                <div className="flex lg:w-[30vw] justify-end items-center lg:text-xl">
-                    <LuHardDriveDownload className='text-gray-700 hover:text-gray-500 cursor-pointer lg:mr-2 '/>
-                    <HiSpeakerWave className='text-gray-700 hover:text-gray-500 cursor-pointer lg:mr-2 ' 
-                    onMouseOver={()=>setVolumeVisible(true)}
-                    onMouseOut={()=>setVolumeVisible(false)}
+                <div className="flex lg:w-[30vw] justify-end items-center lg:text-xl gap-3" >
+                    <LuHardDriveDownload className='text-gray-700 lg:text-3xl hover:text-gray-500 cursor-pointer lg:mr-2' onClick={()=>handleDownloadSongs(currentSong.audio.src)}/>
+                    <HiSpeakerWave className='text-gray-700 lg:text-3xl hover:text-gray-500 cursor-pointer lg:mr-2 ' 
+                          onClick={()=>setVolumeVisible(!isVolumeVisible)}
+                          
                    />
                     <VolumeController isVolumeVisible={isVolumeVisible}/>
                 </div>

@@ -15,6 +15,7 @@ input[type="range"]{
     width: 100%;
     margin-bottom: 13.8px;
     accent-color: #46c7b6ff;
+   
 }
 
 input[type="range"]::-webkit-slider-thumb{
