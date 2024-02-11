@@ -13,6 +13,7 @@ function PlayListDetails(){
     const {setSongs} = useContext(MusicContext);
     const [playListdata,setplayListdata] = useState({});
     const [image,setImage] = useState(null);
+    const [isLoading,setIsLoading] = useState(true);
 
    const {id} = useParams();
 
@@ -30,7 +31,9 @@ function PlayListDetails(){
        return image[length - 1].link;   
    }
    useEffect(()=>{
-    getPlayListById();
+    getPlayListById().then(()=>{
+         setIsLoading(false)
+    });
       
    },[])
 
@@ -38,6 +41,7 @@ function PlayListDetails(){
         <>
             <NavBar/>
             <SearchSection/> 
+            {    !isLoading?
                   <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-24 h-screen my-48 lg:my-0 mx-2 lg:mx-auto z-10">
                         <div className="">
                            <img src={image}
@@ -59,7 +63,8 @@ function PlayListDetails(){
                          playListdata.songs?.map((song)=>(<SongList key={song.id} {...song}/>))
                        }
                   </div>
-               </div>  
+                 </div> :"Loading" 
+               }
             <Player/>
         </>
    )
