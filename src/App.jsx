@@ -5,6 +5,7 @@ import Home from './Home/Home'
 import AlbumDetails from './AlbumDetails/AlbumDetails'
 import MusicContext from './context/MusicContext'
 import { useEffect, useState } from 'react'
+import PlayListDetails from './PlayListDetails/PlayListDetails'
 
 function App() {
 
@@ -85,6 +86,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<Home/>}/>
                 <Route path='/Albums/:id' element={<AlbumDetails/>}/>
+                <Route path='/PlayList/:id' element={<PlayListDetails/>}/>
             </Routes>
 
             </BrowserRouter> 

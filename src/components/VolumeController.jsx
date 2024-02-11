@@ -9,7 +9,7 @@ useLayoutEffect(()=>{
 
   if(currentSong){
        setVolume(currentSong.audio.volume * 100)
-       console.log(currentSong.audio.volume)
+     
   }
  },[currentSong,volume])
 

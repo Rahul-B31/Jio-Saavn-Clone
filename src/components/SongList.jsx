@@ -17,6 +17,8 @@ const SongList = ({name,primaryArtists,duration,downloadUrl,image,id}) => {
   return (
      <div className="flex justify-between items-center w-[80vw] lg:w-[50vw] mb-2 lg:mb-1 p-1 px-3 hover: bg-white hover:shadow-md">
         
+
+        <img src={image[2].link} width={29} alt="" className='rounded-lg hover:scale-150 transition-all ease-linear duration-100 delay-100' />
         <GoPlay className='text-3xl text-gray-500 hover:text-gray-700 transition-all ease-in-out duration-300 cursor-pointer' onClick={()=>{
             
             PlayMusic(downloadUrl,name,duration,image,id,primaryArtists)

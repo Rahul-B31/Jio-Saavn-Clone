@@ -6,12 +6,18 @@ import Slider from './Slider';
 const MainComponet = () => {
     const [album,setAlbum] = useState([]);
     const [trending,setTrending] = useState([]);
+    const [playList,setPlayList] = useState([]);
+    const [charts,setCharts] = useState([]);
+
 
     const getHomePageData = async ()=>{
         const response =  await axios.get("https://saavn.dev/modules?language=hindi");
-        const {data}  = response.data;
+        const {data}  = await response.data;
         setAlbum(data.albums);
         setTrending(data.trending)
+        setPlayList(data.playlists)
+        setCharts(data.charts)
+        console.log(data)
         
      
       }
@@ -35,6 +41,18 @@ const MainComponet = () => {
                    Top Albums
                 </h2>
                 <Slider data={album}/>
+                <h2 className='text-xl px-5 py-3 font-semibold text-gray-600 w-full lg:w-[78vw] mx-auto'>
+                   Top Playlist
+                </h2>
+                <Slider data={playList}/>
+
+
+                <h2 className='text-xl px-5 py-3 font-semibold text-gray-600 w-full lg:w-[78vw] mx-auto'>
+                   Top Charts
+                </h2>
+                <Slider data={charts}/>
+
+
          </section>
   )
 }

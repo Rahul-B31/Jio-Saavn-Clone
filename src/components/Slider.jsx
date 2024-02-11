@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import {MdOutlineKeyboardArrowRight,MdOutlineKeyboardArrowLeft} from 'react-icons/md'
 import AlbumItem from './AlbumItem'
+import PlayListItem from './PlayListItem';
 
 
 const Slider = ({data}) => {
@@ -20,7 +21,16 @@ const Slider = ({data}) => {
            
            <div className="grid grid-rows-2 grid-flow-col-dense justify-between items-start gap-4 overflow-x-scroll w-full lg:w-[78vw] px-5 scroll-hide" ref={scrollRef}>
                   {
-                     data?.map((album)=><AlbumItem key={album.id} {...album}/>)
+                          
+                             data?.map((item)=>{
+                              if(item.type == 'album')
+                               return <AlbumItem key={item.id} {...item}/>
+                             else if(item.type == 'playlist')  {
+                                return <PlayListItem key={item.id} {...item} />
+                             }
+
+                             })
+                       
                   }
            </div>
 
