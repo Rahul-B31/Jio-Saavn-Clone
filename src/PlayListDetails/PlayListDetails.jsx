@@ -58,7 +58,7 @@ function PlayListDetails(){
                         </div>
 
 
-                   <div className="h-[70vh] overflow-auto">
+                   <div className="h-[60vh] overflow-auto">
                        {
                          playListdata.songs?.map((song)=>(<SongList key={song.id} {...song}/>))
                        }

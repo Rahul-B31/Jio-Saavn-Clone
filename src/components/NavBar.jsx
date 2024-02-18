@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import {MdKeyboardArrowDown} from 'react-icons/md'
 import axios from 'axios';
@@ -7,19 +7,29 @@ import Switcher from '../DarkThemeSwith/Switcher';
 
 const NavBar = () => {
    const {setSearchSong} = useContext(MusicContext);
+   const [searchText,setSearchText] = useState('');
 
- async function searchSongs(event){
+ async function searchSongs(){
 
-      const response =  await axios.get(`https://saavn.dev/search/songs?query=${event.target.value}&page=1&limit=2`);
+      const response =  await axios.get(`https://saavn.dev/search/songs?query=${searchText}&page=1&limit=2`);
       const {data}  =   response.data;
 
-      if(data.results.length === 0 || event.target.value === " " || event.target.value.length === 0 ||event.target.value === ""){
-          setSearchSong([])
+      if(data.results.length === 0 ||searchText === " " || searchText.length === 0 ||searchText === ""){
+          await setSearchSong([])
       }else{
-         setSearchSong(data.results);
+          await setSearchSong(data.results);
       }
       
    }
+
+   useEffect(()=>{
+
+     const timer = setTimeout(() => {
+           searchSongs();
+       },200);
+
+       return ()=> clearTimeout(timer);
+   },[searchText]);
   return (
      <header>
         <nav className='flex justify-between items-center bg-[#f5f5f5ff] py-3 lg:border border-slate-300 dark:border-slate-600 px-3 fixed top-0 left-0 right-0 z-20 dark:bg-darkblue'>
@@ -43,11 +53,12 @@ const NavBar = () => {
                 <input type="text" 
                   name='search'
                   id='search'
+                  value={searchText}
                   className='py-2 rounded-full w-[40vw] outline-none text-center border  text-black dark:text-gray-800 dark:bg-gray-200'
                   placeholder='Search for songs'
                   autoComplete='off'
                   autoCorrect='off'
-                  onChange={searchSongs}
+                  onChange={(e)=>setSearchText(e.target.value)}
                 />
                  <div className="">
                       <Switcher/>  
